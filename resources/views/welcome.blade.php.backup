@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>DevCleon - Full Stack Developer | Laravel, Blockchain, Mobile Development</title>
+    <meta name="description" content="Professional full-stack developer specializing in Laravel, Java, Flutter, and Solidity. Building scalable web applications, blockchain solutions, and mobile experiences.">
+    <meta name="keywords" content="full stack developer, Laravel developer, blockchain developer, Solidity, Flutter, Java, React, web development, mobile development">
+    <meta name="author" content="DevCleon">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url('/') }}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:title" content="DevCleon - Full Stack Developer Portfolio">
+    <meta property="og:description" content="Professional full-stack developer specializing in Laravel, Java, Flutter, and Solidity. Building scalable web applications, blockchain solutions, and mobile experiences.">
+    <meta property="og:image" content="{{ asset('logo.jpg') }}">
+    <meta property="og:site_name" content="DevCleon Portfolio">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url('/') }}">
+    <meta name="twitter:title" content="DevCleon - Full Stack Developer Portfolio">
+    <meta name="twitter:description" content="Professional full-stack developer specializing in Laravel, Java, Flutter, and Solidity.">
+    <meta name="twitter:image" content="{{ asset('logo.jpg') }}">
+    
+    <!-- Structured Data (JSON-LD) -->
+    @verbatim
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "DevCleon",
+        "url": "/",
+        "jobTitle": "Full Stack Developer",
+        "description": "Professional full-stack developer specializing in Laravel, Java, Flutter, and Solidity",
+        "knowsAbout": ["Laravel", "Java", "Flutter", "Solidity", "React", "Docker", "Blockchain", "Web Development", "Mobile Development"],
+        "sameAs": []
+    }
+    </script>
+    @endverbatim
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --glass-bg: rgba(26, 26, 46, 0.4);
+            --glass-border: rgba(59, 130, 246, 0.2);
+            --gradient-1: rgba(59, 130, 246, 0.15);
+            --gradient-2: rgba(136, 19, 55, 0.15);
+            --accent-blue: #3b82f6;
+            --accent-maroon: #881337;
+        }
+        
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #e0e7ff;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(59, 130, 246, 0.2);
+            --gradient-1: rgba(59, 130, 246, 0.08);
+            --gradient-2: rgba(136, 19, 55, 0.08);
+            --accent-blue: #2563eb;
+            --accent-maroon: #9f1239;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Gradient Background */
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+            position: relative;
+        }
+        
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(136, 19, 55, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        [data-theme="light"] .glass {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Animations */
+        @@keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @@keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(37, 99, 235, 0.6); }
+        }
+        
+        @@keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @@keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-glow { animation: glow 3s ease-in-out infinite; }
+        .animate-slide-left { animation: slideInLeft 0.8s ease-out; }
+        .animate-slide-right { animation: slideInRight 0.8s ease-out; }
+        
+        /* Three.js Canvas */
+        #ide-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        [data-theme="light"] #ide-canvas {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15),
+                        inset 0 0 0 1px rgba(148, 163, 184, 0.1);
+        }
+        
+        .canvas-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(136, 19, 55, 0.1) 100%);
+            border-radius: 1rem;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        [data-theme="light"] .canvas-overlay {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(136, 19, 55, 0.05) 100%);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1d4ed8; }
+        
+        /* Hover Effects */
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        }
+        
+        [data-theme="light"] .hover-lift:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #881337 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        [data-theme="light"] .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #9f1239 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        
+        .custom-cursor.cursor-hover {
+            width: 60px;
+            height: 60px;
+            border-color: rgba(136, 19, 55, 0.8);
+        }
+        
+        .cursor-dot.cursor-hover {
+            width: 12px;
+            height: 12px;
+            background: #881337;
+        }
+        
+        /* Glitch Effect */
+        .glitch-active {
+            animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+        
+        @@keyframes glitch {
+            0%, 100% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+        }
+        
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .scroll-animate.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Enhanced Glow Effect */
+        @@keyframes enhanced-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.4),
+                            0 0 40px rgba(136, 19, 55, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(59, 130, 246, 0.6),
+                            0 0 60px rgba(136, 19, 55, 0.4);
+            }
+        }
+        
+        .animate-glow {
+            animation: enhanced-glow 3s ease-in-out infinite;
+        }
+        
+        /* Matrix Rain Background */
+        @@keyframes matrix-fall {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        /* Holographic Effect */
+        .holographic {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .holographic::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(59, 130, 246, 0.1) 50%,
+                transparent 70%
+            );
+            animation: holographic-shine 3s linear infinite;
+        }
+        
+        @@keyframes holographic-shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+        
+        /* Neumorphism */
+        .neumorphic {
+            background: var(--bg-secondary);
+            box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3),
+                        -8px -8px 16px rgba(255, 255, 255, 0.05);
+        }
+        
+        [data-theme="light"] .neumorphic {
+            box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1),
+                        -8px -8px 16px rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Pulse Animation */
+        @@keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+        
+        /* Shimmer Effect */
+        @@keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+        
+        .shimmer {
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(59, 130, 246, 0.2) 50%,
+                transparent 100%
+            );
+            background-size: 1000px 100%;
+            animation: shimmer 3s infinite;
+        }
+    
+    </style>
+</head>
+<body class="gradient-bg">
+    
+    <!-- Navigation -->
+    <nav class="w-full glass">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl font-bold gradient-text">DevCleon</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="hover:text-blue-500 transition" style="color: var(--text-secondary);">Home</a>
+                    <a href="#projects" class="hover:text-blue-500 transition" style="color: var(--text-secondary);">Projects</a>
+                    <a href="#skills" class="hover:text-blue-500 transition" style="color: var(--text-secondary);">Skills</a>
+                    <a href="#contact" class="hover:text-blue-500 transition" style="color: var(--text-secondary);">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 glass rounded-lg hover:bg-white/10 transition">
+                        <svg id="theme-icon-sun" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        <svg id="theme-icon-moon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0" id="ide-canvas-container"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <!-- Left Content -->
+            <div class="animate-slide-left space-y-8">
+                <div class="inline-block px-4 py-2 glass rounded-full">
+                    <span class="text-sm font-semibold gradient-text">🚀 Available for Freelance</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black leading-tight">
+                    Building The
+                    <span class="gradient-text block">Future</span>
+                    One Line at a Time
+                </h1>
+                
+                <p class="text-xl text-gray-400 leading-relaxed">
+                    Full-stack developer specializing in scalable web applications, blockchain solutions, 
+                    and cutting-edge mobile experiences. Transforming ideas into reality.
+                </p>
+                
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-4 py-2 glass rounded-lg text-sm font-medium">Laravel</span>
+                    <span class="px-4 py-2 glass rounded-lg text-sm font-medium">Java</span>
+                    <span class="px-4 py-2 glass rounded-lg text-sm font-medium">Flutter</span>
+                    <span class="px-4 py-2 glass rounded-lg text-sm font-medium">Solidity</span>
+                    <span class="px-4 py-2 glass rounded-lg text-sm font-medium">React</span>
+                    <span class="px-4 py-2 glass rounded-lg text-sm font-medium">Docker</span>
+                </div>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-rose-900 rounded-lg font-bold text-lg hover:opacity-90 transition animate-glow">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="px-8 py-4 glass rounded-lg font-bold text-lg hover:bg-white/10 transition">
+                        Get in Touch
+                    </a>
+                    <a href="/storage/resume.pdf" target="_blank" download class="px-8 py-4 glass rounded-lg font-bold text-lg hover:bg-white/10 transition flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Download CV
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Right Content - Three.js IDE -->
+            <div class="animate-slide-right hidden md:block">
+                <div class="relative h-[600px] animate-float">
+                    <canvas id="ide-canvas" class="rounded-2xl"></canvas>
+                    <div class="canvas-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black mb-4">Featured <span class="gradient-text">Projects</span></h2>
+                <p class="text-xl text-gray-400">Showcasing my best work and innovations</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project cards will be dynamically loaded -->
+                <div class="glass rounded-2xl overflow-hidden hover-lift holographic">
+                    <div class="aspect-video bg-gradient-to-br from-blue-900/20 to-red-900/20 relative">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <svg class="w-16 h-16 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Sample Project</h3>
+                        <p class="text-gray-400 mb-4">A sample project description.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs">Laravel</span>
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs">React</span>
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs">MySQL</span>
+                        </div>
+                        <a href="#" target="_blank" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition">
+                            View Project →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl overflow-hidden hover-lift holographic">
+                    <div class="aspect-video bg-gradient-to-br from-blue-900/20 to-red-900/20 relative">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <svg class="w-16 h-16 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Another Project</h3>
+                        <p class="text-gray-400 mb-4">Another sample project description.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs">Flutter</span>
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs">Firebase</span>
+                        </div>
+                        <a href="#" target="_blank" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition">
+                            View Project →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl overflow-hidden hover-lift holographic">
+                    <div class="aspect-video bg-gradient-to-br from-blue-900/20 to-red-900/20 relative">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <svg class="w-16 h-16 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Blockchain Project</h3>
+                        <p class="text-gray-400 mb-4">A blockchain-based application.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs">Solidity</span>
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs">Web3.js</span>
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs">Ethereum</span>
+                        </div>
+                        <a href="#" target="_blank" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition">
+                            View Project →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black mb-4">Technical <span class="gradient-text">Expertise</span></h2>
+                <p class="text-xl text-gray-400">Technologies I work with daily</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="glass rounded-2xl p-8 text-center hover-lift">
+                    <div class="text-5xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-2">Backend</h3>
+                    <p class="text-gray-400 text-sm">Laravel, Node.js, Java Spring</p>
+                </div>
+                <div class="glass rounded-2xl p-8 text-center hover-lift">
+                    <div class="text-5xl mb-4">🎨</div>
+                    <h3 class="text-xl font-bold mb-2">Frontend</h3>
+                    <p class="text-gray-400 text-sm">React, Vue, Tailwind CSS</p>
+                </div>
+                <div class="glass rounded-2xl p-8 text-center hover-lift">
+                    <div class="text-5xl mb-4">📱</div>
+                    <h3 class="text-xl font-bold mb-2">Mobile</h3>
+                    <p class="text-gray-400 text-sm">Flutter, React Native</p>
+                </div>
+                <div class="glass rounded-2xl p-8 text-center hover-lift">
+                    <div class="text-5xl mb-4">⛓️</div>
+                    <h3 class="text-xl font-bold mb-2">Blockchain</h3>
+                    <p class="text-gray-400 text-sm">Solidity, Web3.js, Ethers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black mb-4">Latest <span class="gradient-text">Articles</span></h2>
+                <p class="text-xl" style="color: var(--text-secondary);">Insights, tutorials, and thoughts on development</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog posts will be dynamically loaded -->
+                <article class="glass rounded-2xl overflow-hidden hover-lift holographic">
+                    <div class="aspect-video bg-gradient-to-br from-blue-900/20 to-red-900/20">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <svg class="w-16 h-16 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs font-semibold text-blue-400">
+                                Tech
+                            </span>
+                            <span class="text-sm" style="color: var(--text-secondary);">
+                                Jan 1, 2024
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-primary);">Sample Blog Post</h3>
+                        <p class="mb-4 line-clamp-3" style="color: var(--text-secondary);">
+                            This is a sample blog post description. In a real application, this would be loaded from your database.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition font-semibold">
+                            Read More →
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="glass rounded-2xl overflow-hidden hover-lift holographic">
+                    <div class="aspect-video bg-gradient-to-br from-blue-900/20 to-red-900/20">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <svg class="w-16 h-16 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs font-semibold text-blue-400">
+                                Laravel
+                            </span>
+                            <span class="text-sm" style="color: var(--text-secondary);">
+                                Dec 15, 2023
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-primary);">Laravel Tips & Tricks</h3>
+                        <p class="mb-4 line-clamp-3" style="color: var(--text-secondary);">
+                            Learn some advanced Laravel techniques to improve your development workflow.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition font-semibold">
+                            Read More →
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="glass rounded-2xl overflow-hidden hover-lift holographic">
+                    <div class="aspect-video bg-gradient-to-br from-blue-900/20 to-red-900/20">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <svg class="w-16 h-16 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="px-3 py-1 bg-blue-600/20 rounded-full text-xs font-semibold text-blue-400">
+                                Blockchain
+                            </span>
+                            <span class="text-sm" style="color: var(--text-secondary);">
+                                Nov 30, 2023
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--text-primary);">Getting Started with Solidity</h3>
+                        <p class="mb-4 line-clamp-3" style="color: var(--text-secondary);">
+                            A beginner's guide to smart contract development with Solidity on Ethereum.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition font-semibold">
+                            Read More →
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-black mb-6">Let's Build Something <span class="gradient-text">Amazing</span></h2>
+                <p class="text-xl mb-12" style="color: var(--text-secondary);">Ready to bring your ideas to life? Let's talk.</p>
+            </div>
+            
+            <div class="glass rounded-2xl p-8 md:p-12">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Name</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="w-full glass px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                   placeholder="Your name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full glass px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                   placeholder="your email">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Subject</label>
+                        <input type="text" id="subject" name="subject" required 
+                               class="w-full glass px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               placeholder="Project inquiry">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Message</label>
+                        <textarea id="message" name="message" rows="6" required 
+                                  class="w-full glass px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                  placeholder="Tell me about your project"></textarea>
+                    </div>
+                    <button type="submit" 
+                            class="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-rose-900 rounded-lg font-bold text-lg hover:opacity-90 transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-gray-400">&copy; {{ date('Y') }} DevCleon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Three.js IDE Animation Script -->
+    <script src="{{ asset('js/ide-animation.js') }}"></script>
+    
+    <!-- Advanced Effects Script -->
+    <script src="{{ asset('js/advanced-effects.js') }}"></script>
+    
+    <!-- Livewire Script -->
+    <script src="https://cdn.jsdelivr.net/gh/livewire/livewire@v3.x.x/dist/livewire.min.js"></script>
+</body>
+</html>
