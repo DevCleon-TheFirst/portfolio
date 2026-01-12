@@ -25,6 +25,7 @@ class AccountabilityDashboard extends Component
             'title' => $this->newProjectTitle,
             'status' => 'active',
             'start_date' => now(),
+            'deadline' => now()->addDays(30), // Default deadline of 30 days
             'completion_percentage' => 0
         ]);
 
