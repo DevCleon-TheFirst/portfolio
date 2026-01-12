@@ -144,7 +144,7 @@
 
         <!-- Sidebar -->
         <aside id="sidebar" 
-               class="fixed md:static inset-y-0 left-0 z-50 flex flex-col h-full border-r border-[#23242A] bg-[#0A0A0A] transition-transform duration-300 ease-in-out md:flex md:translate-x-0 -translate-x-full w-[280px]">
+               class="fixed md:static inset-y-0 left-0 z-50 flex flex-col h-full border-r border-[#23242A] bg-[#0A0A0A] transition-all duration-300 ease-in-out md:flex md:translate-x-0 -translate-x-full w-[280px]">
             
             <!-- Mobile Close Button (Absolute & Top-Level) -->
             <button onclick="toggleMobileMenu(event)" class="md:hidden absolute right-4 top-8 z-[9999] text-gray-400 hover:text-white transition-colors p-2 rounded-lg bg-[#0A0A0A]/90 backdrop-blur-md border border-[#23242A] cursor-pointer shadow-xl">
@@ -327,11 +327,14 @@
             const sidebar = document.getElementById('sidebar');
             // Logic remains same but ensure no errors
             try {
-                const isExtended = sidebar.classList.contains('w-[280px]');
+                // Check current state via style OR class
+                const currentWidth = sidebar.style.width || window.getComputedStyle(sidebar).width;
+                const isExtended = currentWidth.includes('280') || sidebar.classList.contains('w-[280px]');
                 
                 if (isExtended) {
-                    sidebar.classList.remove('w-[280px]');
-                    sidebar.classList.add('w-[88px]');
+                    // Collapse
+                    sidebar.style.width = '88px';
+                    sidebar.classList.remove('w-[280px]'); // Fallback
                     
                     document.getElementById('sidebar-logo-text')?.classList.add('hidden');
                     document.getElementById('sidebar-user-text')?.classList.add('hidden');
@@ -345,8 +348,9 @@
                     document.getElementById('sidebar-user-container')?.classList.add('justify-center');
                     document.querySelectorAll('.nav-item').forEach(el => el.classList.add('justify-center', 'px-2'));
                 } else {
-                    sidebar.classList.remove('w-[88px]');
-                    sidebar.classList.add('w-[280px]');
+                    // Expand
+                    sidebar.style.width = '280px';
+                    sidebar.classList.add('w-[280px]'); // Fallback
                     
                     document.getElementById('sidebar-logo-text')?.classList.remove('hidden');
                     document.getElementById('sidebar-user-text')?.classList.remove('hidden');
