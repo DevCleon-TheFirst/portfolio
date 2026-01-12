@@ -12,6 +12,22 @@
                 totalTime: @entangle('totalTime'),
                 customMinutes: 25,
                 interval: null,
+                soundEnabled: true,
+                audio: new Audio('/audio/alarm.mp3'),
+                init() {
+                    // Preload audio
+                    this.audio.load();
+                },
+                toggleSound() {
+                    this.soundEnabled = !this.soundEnabled;
+                    if(this.soundEnabled) {
+                        // Attempt to unlock audio context on user interaction
+                        this.audio.play().then(() => {
+                            this.audio.pause();
+                            this.audio.currentTime = 0;
+                        }).catch(e => {});
+                    }
+                },
                 start() {
                     if (this.interval) clearInterval(this.interval);
                     this.interval = setInterval(() => {
@@ -21,7 +37,10 @@
                             this.isActive = false;
                             clearInterval(this.interval);
                             $wire.dispatch('timer-finished');
-                            new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3').play().catch(e => console.log('Audio error', e));
+                            if(this.soundEnabled) {
+                                this.audio.currentTime = 0;
+                                this.audio.play().catch(e => console.log('Audio error', e));
+                            }
                         }
                     }, 1000);
                 },
@@ -43,7 +62,7 @@
                    }
                 }
              }"
-             x-init="$watch('isActive', value => value ? start() : pause())"
+             x-init="init(); $watch('isActive', value => value ? start() : pause())"
              >
             
             <!-- Mode Switcher -->
@@ -129,9 +148,14 @@
                     <svg x-show="isActive" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                 </button>
 
-                <button class="p-4 rounded-full text-gray-400 hover:text-white hover:bg-[#1A1B21] transition-all"
-                        title="Sound Settings">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+                <button @click="toggleSound()" 
+                        class="p-4 rounded-full transition-all"
+                        :class="soundEnabled ? 'text-indigo-400 bg-[#1A1B21]' : 'text-gray-400 hover:text-white hover:bg-[#1A1B21]'"
+                        :title="soundEnabled ? 'Mute Sound' : 'Unmute Sound'">
+                    <!-- Sound On Icon -->
+                    <svg x-show="soundEnabled" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+                    <!-- Sound Off Icon -->
+                    <svg x-show="!soundEnabled" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z m15.536-6.536L5.586 15"/></svg>
                 </button>
             </div>
         </div>
