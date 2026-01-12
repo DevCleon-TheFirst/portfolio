@@ -158,7 +158,7 @@
                                 <select wire:model="internal_project_id" class="w-full bg-[#1A1B21] border border-[#23242A] rounded-xl px-4 py-3 text-white focus:border-indigo-500 focus:outline-none transition-colors text-sm">
                                     <option value="">No Project</option>
                                     @foreach($projects as $project)
-                                        <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                        <option value="{{ $project->id }}">{{ $project->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
