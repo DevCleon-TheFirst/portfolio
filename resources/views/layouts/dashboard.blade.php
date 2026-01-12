@@ -152,10 +152,10 @@
             </button>
 
             <!-- Logo -->
-            <div class="h-24 flex items-center justify-between px-6 transition-all duration-300 relative">
+            <div class="h-24 flex items-center justify-between px-6 transition-all duration-300 relative" id="sidebar-logo-container">
                 <a href="{{ route('dashboard.index') }}" class="flex items-center gap-3">
                     <img src="{{ asset('logo.jpg') }}" alt="DevCleon Logo" class="w-10 h-10 rounded-full object-cover border-2 border-indigo-500/50 shadow-lg shadow-indigo-500/20 flex-shrink-0">
-                    <div>
+                    <div id="sidebar-logo-text" class="transition-opacity duration-200">
                         <h1 class="text-xl font-bold tracking-tight">DevCleon</h1>
                         <p class="text-[10px] text-gray-500 font-medium uppercase tracking-widest pl-0.5">Dashboard</p>
                     </div>
@@ -170,7 +170,7 @@
 
                     <a href="{{ route('dashboard.index') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
-                        <span class="truncate">Dashboard</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Dashboard</span>
                     </a>
                 </div>
 
@@ -179,19 +179,19 @@
                     
                     <a href="{{ route('dashboard.blog') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-                        <span class="truncate">Blog Posts</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Blog Posts</span>
                     </a>
                     <a href="{{ route('dashboard.projects') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-                        <span class="truncate">Projects</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Projects</span>
                     </a>
                     <a href="{{ route('dashboard.skills') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                        <span class="truncate">Skills</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Skills</span>
                     </a>
                     <a href="{{ route('dashboard.timeline') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                        <span class="truncate">Timeline</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Timeline</span>
                     </a>
                 </div>
 
@@ -200,46 +200,46 @@
                     
                     <a href="{{ route('dashboard.tasks') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <span class="truncate">Task Board</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Task Board</span>
                     </a>
                     <a href="{{ route('dashboard.focus') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <span class="truncate">Focus Timer</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Focus Timer</span>
                     </a>
                     <a href="{{ route('dashboard.accountability') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                        <span class="truncate">Project Planner</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Project Planner</span>
                     </a>
                     <a href="{{ route('dashboard.messages') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
-                        <span class="truncate">Messages</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Messages</span>
                     </a>
                     <a href="{{ route('dashboard.contact-messages') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                        <span class="truncate">Contact Form</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Contact Form</span>
                     </a>
                     <a href="{{ route('dashboard.settings') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        <span class="truncate">Settings</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">Settings</span>
                     </a>
                     <a href="{{ route('dashboard.ip-blacklist') }}" class="nav-item group">
                         <svg class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
-                        <span class="truncate">IP Blacklist</span>
+                        <span class="sidebar-text truncate transition-opacity duration-200">IP Blacklist</span>
                     </a>
                 </div>
             </nav>
 
             <!-- User -->
             <div class="p-6 border-t border-[#23242A]">
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3" id="sidebar-user-container">
                     <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-gray-700 to-gray-600 border border-gray-500 flex items-center justify-center font-bold flex-shrink-0">
                         {{ substr(auth()->user()->name, 0, 1) }}
                     </div>
-                    <div class="flex-1 min-w-0">
+                    <div class="flex-1 min-w-0 transition-opacity duration-200" id="sidebar-user-text">
                         <p class="text-sm font-semibold truncate">{{ auth()->user()->name }}</p>
                         <p class="text-[10px] text-gray-400">Pro Member</p>
                     </div>
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}" id="sidebar-logout-form">
                         @csrf
                         <button class="text-gray-500 hover:text-white transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
@@ -259,7 +259,7 @@
             <header class="h-20 md:h-24 px-4 md:px-8 flex items-center justify-between z-30 transition-all duration-300">
                 <div class="flex items-center gap-4 flex-1">
                      <!-- Toggle Button -->
-                    <button onclick="toggleMobileMenu()" class="text-gray-500 hover:text-white transition-colors p-2 rounded-lg hover:bg-[#1A1B21] md:hidden">
+                    <button onclick="toggleSidebar()" class="text-gray-500 hover:text-white transition-colors p-2 rounded-lg hover:bg-[#1A1B21]">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                     </button>
 
@@ -292,22 +292,89 @@
 
     @livewireScripts
     <script>
+        window.toggleSidebar = function() {
+            if (window.innerWidth < 768) {
+                // Mobile behavior
+                toggleMobileMenu();
+            } else {
+                // Desktop behavior
+                toggleDesktopMenu();
+            }
+        }
+
         window.toggleMobileMenu = function() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('mobile-overlay');
             
             if (sidebar.classList.contains('-translate-x-full')) {
-                // Open
+                // Open Mobile
                 sidebar.classList.remove('-translate-x-full');
                 sidebar.classList.add('translate-x-0');
                 overlay.classList.remove('hidden');
                 setTimeout(() => overlay.classList.remove('opacity-0'), 10);
             } else {
-                // Close
+                // Close Mobile
                 sidebar.classList.add('-translate-x-full');
                 sidebar.classList.remove('translate-x-0');
                 overlay.classList.add('opacity-0');
                 setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        window.toggleDesktopMenu = function() {
+            const sidebar = document.getElementById('sidebar');
+            const isExtended = sidebar.classList.contains('w-[280px]');
+            
+            // Toggle Width
+            if (isExtended) {
+                // Collapse
+                sidebar.classList.remove('w-[280px]');
+                sidebar.classList.add('w-[88px]');
+                
+                // Hide Text Elements
+                document.getElementById('sidebar-logo-text').classList.add('hidden');
+                document.getElementById('sidebar-user-text').classList.add('hidden');
+                document.getElementById('sidebar-logout-form').classList.add('hidden');
+                document.querySelectorAll('.sidebar-text').forEach(el => el.classList.add('hidden'));
+                document.querySelectorAll('.sidebar-section-label').forEach(el => el.classList.add('hidden'));
+                
+                // Show condensed elements
+                document.querySelectorAll('.sidebar-divider').forEach(el => el.classList.remove('hidden'));
+                
+                // Center items
+                document.getElementById('sidebar-logo-container').classList.remove('justify-between', 'px-6');
+                document.getElementById('sidebar-logo-container').classList.add('justify-center', 'px-2');
+                
+                document.getElementById('sidebar-user-container').classList.add('justify-center');
+                
+                document.querySelectorAll('.nav-item').forEach(el => {
+                    el.classList.add('justify-center', 'px-2');
+                });
+                
+            } else {
+                // Expand
+                sidebar.classList.remove('w-[88px]');
+                sidebar.classList.add('w-[280px]');
+                
+                // Show Text Elements
+                document.getElementById('sidebar-logo-text').classList.remove('hidden');
+                document.getElementById('sidebar-user-text').classList.remove('hidden');
+                document.getElementById('sidebar-logout-form').classList.remove('hidden');
+                document.querySelectorAll('.sidebar-text').forEach(el => el.classList.remove('hidden'));
+                document.querySelectorAll('.sidebar-section-label').forEach(el => el.classList.remove('hidden'));
+                
+                // Hide condensed elements
+                document.querySelectorAll('.sidebar-divider').forEach(el => el.classList.add('hidden'));
+                
+                // Reset alignment
+                document.getElementById('sidebar-logo-container').classList.add('justify-between', 'px-6');
+                document.getElementById('sidebar-logo-container').classList.remove('justify-center', 'px-2');
+                
+                document.getElementById('sidebar-user-container').classList.remove('justify-center');
+                
+                document.querySelectorAll('.nav-item').forEach(el => {
+                    el.classList.remove('justify-center', 'px-2');
+                });
             }
         }
     </script>
