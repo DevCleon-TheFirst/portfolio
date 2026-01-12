@@ -147,8 +147,8 @@
                class="fixed md:static inset-y-0 left-0 z-50 flex flex-col h-full border-r border-[#23242A] bg-[#0A0A0A] transition-transform duration-300 ease-in-out md:flex md:translate-x-0 -translate-x-full w-[280px]">
             
             <!-- Mobile Close Button (Absolute & Top-Level) -->
-            <button onclick="toggleMobileMenu()" class="md:hidden absolute right-4 top-8 z-[60] text-gray-400 hover:text-white transition-colors p-2 rounded-lg bg-[#0A0A0A]/80 backdrop-blur-sm border border-[#23242A]">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <button onclick="toggleMobileMenu(event)" class="md:hidden absolute right-4 top-8 z-[9999] text-gray-400 hover:text-white transition-colors p-2 rounded-lg bg-[#0A0A0A]/90 backdrop-blur-md border border-[#23242A] cursor-pointer shadow-xl">
+                <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
 
             <!-- Logo -->
@@ -294,15 +294,15 @@
     <script>
         window.toggleSidebar = function() {
             if (window.innerWidth < 768) {
-                // Mobile behavior
                 toggleMobileMenu();
             } else {
-                // Desktop behavior
                 toggleDesktopMenu();
             }
         }
 
-        window.toggleMobileMenu = function() {
+        window.toggleMobileMenu = function(e) {
+            if(e) e.stopPropagation();
+            
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('mobile-overlay');
             
@@ -311,7 +311,9 @@
                 sidebar.classList.remove('-translate-x-full');
                 sidebar.classList.add('translate-x-0');
                 overlay.classList.remove('hidden');
-                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                // Force reflow
+                void overlay.offsetWidth;
+                overlay.classList.remove('opacity-0');
             } else {
                 // Close Mobile
                 sidebar.classList.add('-translate-x-full');
@@ -323,58 +325,43 @@
 
         window.toggleDesktopMenu = function() {
             const sidebar = document.getElementById('sidebar');
-            const isExtended = sidebar.classList.contains('w-[280px]');
-            
-            // Toggle Width
-            if (isExtended) {
-                // Collapse
-                sidebar.classList.remove('w-[280px]');
-                sidebar.classList.add('w-[88px]');
+            // Logic remains same but ensure no errors
+            try {
+                const isExtended = sidebar.classList.contains('w-[280px]');
                 
-                // Hide Text Elements
-                document.getElementById('sidebar-logo-text').classList.add('hidden');
-                document.getElementById('sidebar-user-text').classList.add('hidden');
-                document.getElementById('sidebar-logout-form').classList.add('hidden');
-                document.querySelectorAll('.sidebar-text').forEach(el => el.classList.add('hidden'));
-                document.querySelectorAll('.sidebar-section-label').forEach(el => el.classList.add('hidden'));
-                
-                // Show condensed elements
-                document.querySelectorAll('.sidebar-divider').forEach(el => el.classList.remove('hidden'));
-                
-                // Center items
-                document.getElementById('sidebar-logo-container').classList.remove('justify-between', 'px-6');
-                document.getElementById('sidebar-logo-container').classList.add('justify-center', 'px-2');
-                
-                document.getElementById('sidebar-user-container').classList.add('justify-center');
-                
-                document.querySelectorAll('.nav-item').forEach(el => {
-                    el.classList.add('justify-center', 'px-2');
-                });
-                
-            } else {
-                // Expand
-                sidebar.classList.remove('w-[88px]');
-                sidebar.classList.add('w-[280px]');
-                
-                // Show Text Elements
-                document.getElementById('sidebar-logo-text').classList.remove('hidden');
-                document.getElementById('sidebar-user-text').classList.remove('hidden');
-                document.getElementById('sidebar-logout-form').classList.remove('hidden');
-                document.querySelectorAll('.sidebar-text').forEach(el => el.classList.remove('hidden'));
-                document.querySelectorAll('.sidebar-section-label').forEach(el => el.classList.remove('hidden'));
-                
-                // Hide condensed elements
-                document.querySelectorAll('.sidebar-divider').forEach(el => el.classList.add('hidden'));
-                
-                // Reset alignment
-                document.getElementById('sidebar-logo-container').classList.add('justify-between', 'px-6');
-                document.getElementById('sidebar-logo-container').classList.remove('justify-center', 'px-2');
-                
-                document.getElementById('sidebar-user-container').classList.remove('justify-center');
-                
-                document.querySelectorAll('.nav-item').forEach(el => {
-                    el.classList.remove('justify-center', 'px-2');
-                });
+                if (isExtended) {
+                    sidebar.classList.remove('w-[280px]');
+                    sidebar.classList.add('w-[88px]');
+                    
+                    document.getElementById('sidebar-logo-text')?.classList.add('hidden');
+                    document.getElementById('sidebar-user-text')?.classList.add('hidden');
+                    document.getElementById('sidebar-logout-form')?.classList.add('hidden');
+                    document.querySelectorAll('.sidebar-text').forEach(el => el.classList.add('hidden'));
+                    document.querySelectorAll('.sidebar-section-label').forEach(el => el.classList.add('hidden'));
+                    document.querySelectorAll('.sidebar-divider').forEach(el => el.classList.remove('hidden'));
+                    
+                    document.getElementById('sidebar-logo-container')?.classList.remove('justify-between', 'px-6');
+                    document.getElementById('sidebar-logo-container')?.classList.add('justify-center', 'px-2');
+                    document.getElementById('sidebar-user-container')?.classList.add('justify-center');
+                    document.querySelectorAll('.nav-item').forEach(el => el.classList.add('justify-center', 'px-2'));
+                } else {
+                    sidebar.classList.remove('w-[88px]');
+                    sidebar.classList.add('w-[280px]');
+                    
+                    document.getElementById('sidebar-logo-text')?.classList.remove('hidden');
+                    document.getElementById('sidebar-user-text')?.classList.remove('hidden');
+                    document.getElementById('sidebar-logout-form')?.classList.remove('hidden');
+                    document.querySelectorAll('.sidebar-text').forEach(el => el.classList.remove('hidden'));
+                    document.querySelectorAll('.sidebar-section-label').forEach(el => el.classList.remove('hidden'));
+                    document.querySelectorAll('.sidebar-divider').forEach(el => el.classList.add('hidden'));
+                    
+                    document.getElementById('sidebar-logo-container')?.classList.add('justify-between', 'px-6');
+                    document.getElementById('sidebar-logo-container')?.classList.remove('justify-center', 'px-2');
+                    document.getElementById('sidebar-user-container')?.classList.remove('justify-center');
+                    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('justify-center', 'px-2'));
+                }
+            } catch(error) {
+                console.error('Sidebar error:', error);
             }
         }
     </script>
