@@ -35,6 +35,13 @@ class AccountabilityDashboard extends Component
         session()->flash('success', 'Project created successfully. Time to build!');
     }
 
+    public function deleteProject($id)
+    {
+        $project = InternalProject::where('user_id', auth()->id())->findOrFail($id);
+        $project->delete();
+        session()->flash('success', 'Project deleted successfully.');
+    }
+
     public function calculateStreak()
     {
         // Simple streak logic: Consecutive days with at least 1 completed task
