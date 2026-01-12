@@ -150,6 +150,11 @@
                    mobileMenuOpen ? 'translate-x-0 w-[280px]' : '-translate-x-full md:translate-x-0'
                ]">
             
+            <!-- Mobile Close Button (Absolute & Top-Level) -->
+            <button @click="mobileMenuOpen = false" class="md:hidden absolute right-4 top-8 z-[60] text-gray-400 hover:text-white transition-colors p-2 rounded-lg bg-[#0A0A0A]/80 backdrop-blur-sm border border-[#23242A]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
             <!-- Logo -->
             <div class="h-24 flex items-center justify-between px-6 transition-all duration-300 relative">
                 <a href="{{ route('dashboard.index') }}" class="flex items-center gap-3">
@@ -159,11 +164,6 @@
                         <p class="text-[10px] text-gray-500 font-medium uppercase tracking-widest pl-0.5">Dashboard</p>
                     </div>
                 </a>
-                
-                <!-- Mobile Close Button (Absolute) -->
-                <button @click="mobileMenuOpen = false" class="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/5 z-50">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
             </div>
 
             <!-- Nav -->
