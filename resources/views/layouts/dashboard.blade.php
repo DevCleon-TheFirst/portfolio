@@ -151,7 +151,7 @@
                ]">
             
             <!-- Logo -->
-            <div class="h-24 flex items-center px-6 transition-all duration-300" :class="sidebarOpen ? 'justify-start' : 'justify-center'">
+            <div class="h-24 flex items-center justify-between px-6 transition-all duration-300">
                 <a href="{{ route('dashboard.index') }}" class="flex items-center gap-3">
                     <img src="{{ asset('logo.jpg') }}" alt="DevCleon Logo" class="w-10 h-10 rounded-full object-cover border-2 border-indigo-500/50 shadow-lg shadow-indigo-500/20 flex-shrink-0">
                     <div x-show="sidebarOpen || mobileMenuOpen" x-transition.opacity.duration.200ms>
@@ -159,6 +159,11 @@
                         <p class="text-[10px] text-gray-500 font-medium uppercase tracking-widest pl-0.5">Dashboard</p>
                     </div>
                 </a>
+                
+                <!-- Mobile Close Button -->
+                <button @click="mobileMenuOpen = false" class="md:hidden text-gray-500 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
             </div>
 
             <!-- Nav -->
