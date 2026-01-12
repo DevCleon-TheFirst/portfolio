@@ -151,7 +151,7 @@
                ]">
             
             <!-- Logo -->
-            <div class="h-24 flex items-center justify-between px-6 transition-all duration-300">
+            <div class="h-24 flex items-center justify-between px-6 transition-all duration-300 relative">
                 <a href="{{ route('dashboard.index') }}" class="flex items-center gap-3">
                     <img src="{{ asset('logo.jpg') }}" alt="DevCleon Logo" class="w-10 h-10 rounded-full object-cover border-2 border-indigo-500/50 shadow-lg shadow-indigo-500/20 flex-shrink-0">
                     <div x-show="sidebarOpen || mobileMenuOpen" x-transition.opacity.duration.200ms>
@@ -160,8 +160,8 @@
                     </div>
                 </a>
                 
-                <!-- Mobile Close Button -->
-                <button @click="mobileMenuOpen = false" class="md:hidden text-gray-500 hover:text-white transition-colors">
+                <!-- Mobile Close Button (Absolute) -->
+                <button @click="mobileMenuOpen = false" class="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/5 z-50">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
