@@ -141,6 +141,18 @@
                                         <input type="file" wire:model="image" class="absolute inset-0 opacity-0 cursor-pointer">
                                     </div>
                                 </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Project URL</label>
+                                        <input type="url" wire:model="project_url" class="w-full bg-[#1A1B21] border border-[#23242A] rounded-xl px-4 py-3 text-white focus:border-indigo-500 focus:outline-none transition-colors" placeholder="https://...">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">GitHub URL</label>
+                                        <input type="url" wire:model="github_url" class="w-full bg-[#1A1B21] border border-[#23242A] rounded-xl px-4 py-3 text-white focus:border-indigo-500 focus:outline-none transition-colors" placeholder="https://github.com/...">
+                                    </div>
+                                </div>
+
                                 <div class="bg-[#1A1B21] p-4 rounded-xl border border-[#23242A]">
                                     <label class="flex items-center gap-3 cursor-pointer">
                                         <input type="checkbox" wire:model="is_featured" class="form-checkbox h-5 w-5 text-indigo-500 rounded border-gray-600 bg-gray-800 focus:ring-0 focus:ring-offset-0">
