@@ -273,6 +273,12 @@
                 </div>
 
                 <div class="flex items-center gap-4 md:gap-6 pl-4 md:pl-8">
+                    <!-- View Site Link -->
+                    <a href="{{ url('/') }}" target="_blank" class="hidden md:flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-indigo-400 transition-colors" title="View Portfolio">
+                        <span>View Site</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                    
                     <livewire:dashboard.notifications-dropdown />
                     <div class="h-6 w-[1px] bg-[#23242A]"></div>
                     <button class="btn-premium px-4 py-2 md:px-6 md:py-2.5 text-sm flex items-center gap-2">
